@@ -1,0 +1,26 @@
+name Build Windows App
+
+on
+  push
+    branches
+      - main
+
+jobs
+  build
+    runs-on windows-latest
+
+    steps
+    - name Checkout repository
+      uses actionscheckout@v4
+
+    - name Setup MSBuild
+      uses microsoftsetup-msbuild@v2
+
+    - name Build project
+      run msbuild ZIoVPO.sln pConfiguration=Release
+
+    - name Upload exe artifact
+      uses actionsupload-artifact@v4
+      with
+        name ZIoVPO-exe
+        path x64ReleaseZIoVPO.exe
