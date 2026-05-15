@@ -127,20 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h" />
-    <ClInclude Include="Resource.h" />
-    <ClInclude Include="targetver.h" />
-    <ClInclude Include="ZIOVPOapp.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="ZIOVPOapp.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="ZIOVPOapp.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="small.ico" />
-    <Image Include="ZIOVPOapp.ico" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="tray.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
