@@ -1,26 +1,30 @@
-name Build Windows App
+name: Build Windows App
 
-on
-  push
-    branches
+on:
+  push:
+    branches:
       - main
+      - branch-2
 
-jobs
-  build
-    runs-on windows-latest
+jobs:
+  build:
+    runs-on: windows-latest
 
-    steps
-    - name Checkout repository
-      uses actionscheckout@v4
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name Setup MSBuild
-      uses microsoftsetup-msbuild@v2
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
 
-    - name Build project
-      run msbuild ZIoVPO.sln pConfiguration=Release
+      - name: Configure CMake
+        run: cmake -B build -S .
 
-    - name Upload exe artifact
-      uses actionsupload-artifact@v4
-      with
-        name ZIoVPO-exe
-        path x64ReleaseZIoVPO.exe
+      - name: Build project
+        run: cmake --build build --config Release
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZIoVPO
+          path: build/Release/ZIoVPO.exe
